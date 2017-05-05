@@ -667,9 +667,12 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lfk-C3-g8D">
-                                <rect key="frame" x="243" y="505" width="44" height="30"/>
+                                <rect key="frame" x="242" y="505" width="44" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Follow"/>
+                                <connections>
+                                    <action selector="executeFollowMeMissionAction:" destination="oJj-Fc-UDf" eventType="touchUpInside" id="Hvk-JJ-70r"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
