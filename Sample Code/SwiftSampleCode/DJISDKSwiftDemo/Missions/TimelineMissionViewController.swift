@@ -8,6 +8,8 @@
 
 import UIKit
 import DJISDK
+import CoreLocation
+
 
 enum TimelineElementKind: String {
     case takeOff = "Take Off"
@@ -23,8 +25,11 @@ enum TimelineElementKind: String {
     case hotpointMission = "Hotpoint Mission"
 }
 
-class TimelineMissionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, MKMapViewDelegate {
+class TimelineMissionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, MKMapViewDelegate, CLLocationManagerDelegate {
 
+    var locationManager = CLLocationManager()
+    var isGpsInit = false
+    var currentLocation: CLLocationCoordinate2D?
     @IBOutlet weak var availableElementsView: UICollectionView!
     var availableElements = [TimelineElementKind]()
     
@@ -33,6 +38,7 @@ class TimelineMissionViewController: UIViewController, UICollectionViewDelegate,
     var homeAnnotation = DJIImageAnnotation(identifier: "homeAnnotation")
     var aircraftAnnotation = DJIImageAnnotation(identifier: "aircraftAnnotation")
     var aircraftAnnotationView: MKAnnotationView!
+    var followMeMission: DJIFollowMeMission!
     
     @IBOutlet weak var timelineView: UICollectionView!
     var scheduledElements = [TimelineElementKind]()
@@ -42,6 +48,13 @@ class TimelineMissionViewController: UIViewController, UICollectionViewDelegate,
     
     @IBOutlet weak var simulatorButton: UIButton!
 
+    @IBOutlet weak var executeLaunchButton: UIButton!
+    @IBOutlet weak var executeLandButton: UIButton!
+    @IBOutlet weak var executeHotPointMissionButton: UIButton!
+    @IBOutlet weak var executeFollowMeMissionButton: UIButton!
+    @IBOutlet weak var updateFollowMeCoordsActionButton: UIButton!
+
+    
     fileprivate var _isSimulatorActive: Bool = false
     public var isSimulatorActive: Bool {
         get {
@@ -201,22 +214,25 @@ class TimelineMissionViewController: UIViewController, UICollectionViewDelegate,
     }
     
     @IBAction func startSimulatorButtonAction(_ sender: Any) {
-        guard let droneLocationKey = DJIFlightControllerKey(param: DJIFlightControllerParamAircraftLocation) else {
-            return
+        /*guard let droneLocationKey = DJIFlightControllerKey(param: DJIFlightControllerParamAircraftLocation) else {
+           NSLog("location key error)
+           return
         }
         
         guard let droneLocationValue = DJISDKManager.keyManager()?.getValueFor(droneLocationKey) else {
+            NSLog("location value error)
             return
-        }
+        }*/
         
-        let droneLocation = droneLocationValue.value as! DJISDKLocation
-        let droneCoordinates = droneLocation.coordinate
+        //let droneLocation = droneLocationValue.value as! DJISDKLocation
+        let droneLocation = DJISDKLocation(latitude: 37.7937176685514, longitude: -122.401532213915, altitude: 100)
+        let droneCoordinates = droneLocation?.coordinate
     
         if let aircraft = DJISDKManager.product() as? DJIAircraft {
             if self.isSimulatorActive {
                 aircraft.flightController?.simulator?.stop(completion: nil)
             } else {
-                aircraft.flightController?.simulator?.start(withLocation: droneCoordinates,
+                aircraft.flightController?.simulator?.start(withLocation: droneCoordinates!,
                                                                       updateFrequency: 30,
                                                                       gpsSatellitesNumber: 12,
                                                                       withCompletion: { (error) in
@@ -225,7 +241,10 @@ class TimelineMissionViewController: UIViewController, UICollectionViewDelegate,
                     }
                 })
             }
+        } else {
+            NSLog("location aircraft error")
         }
+        
     }
     
     func didStart() {
@@ -376,7 +395,7 @@ class TimelineMissionViewController: UIViewController, UICollectionViewDelegate,
         mission.pointOfInterest = droneCoordinates
         let offset = 0.0000899322
         
-        let loc1 = CLLocationCoordinate2DMake(droneCoordinates.latitude + offset, droneCoordinates.longitude)
+        let loc1 = CLLocationCoordinate2DMake(droneCoordinates.latitude, droneCoordinates.longitude)
         let waypoint1 = DJIWaypoint(coordinate: loc1)
         waypoint1.altitude = 25
         waypoint1.heading = 0
@@ -434,6 +453,72 @@ class TimelineMissionViewController: UIViewController, UICollectionViewDelegate,
         return DJIWaypointMission(mission: mission)
     }
     
+    @IBAction func executeLaunchAction(_ sender: Any) {
+        if (!self.isGpsInit)
+        {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.requestWhenInUseAuthorization()
+            // start the GPS receiver
+            locationManager.startUpdatingLocation()
+            self.isGpsInit = true
+        }
+        
+        let takeoffAction = DJITakeOffAction()
+        executeAction(action: takeoffAction)
+        let followMeMission = defaultFollowMeAction()
+        executeAction(action: followMeMission!)
+        DJISDKManager.missionControl()?.startTimeline()
+    }
+    
+    @IBAction func executeLandAction(_ sender: Any) {
+        DJISDKManager.missionControl()?.unscheduleEverything()
+        DJISDKManager.missionControl()?.stopTimeline()
+        let landAction = DJIGoHomeAction()
+        executeAction(action: landAction)
+        DJISDKManager.missionControl()?.startTimeline()
+    }
+    
+    @IBAction func executeHotPointMissionAction(_ sender: Any) {
+        DJISDKManager.missionControl()?.unscheduleEverything()
+        DJISDKManager.missionControl()?.stopTimeline()
+        let hotPointMission = defaultHotPointAction()
+        executeAction(action: hotPointMission!)
+        let followMeMission = defaultFollowMeAction()
+        executeAction(action: followMeMission!)
+        DJISDKManager.missionControl()?.startTimeline()
+    }
+    
+    @IBAction func executeFollowMeMissionAction(_ sender: Any) {
+        DJISDKManager.missionControl()?.unscheduleEverything()
+        DJISDKManager.missionControl()?.stopTimeline()
+        let followMeMission = defaultFollowMeAction()
+        executeAction(action: followMeMission!)
+        DJISDKManager.missionControl()?.startTimeline()
+    }
+    
+    @IBAction func updateFollowMeCoordsAction(location: CLLocationCoordinate2D)
+    {
+        let missionOperator = DJISDKManager.missionControl()?.followMeMissionOperator()
+        missionOperator?.updateFollowMeCoordinate(location)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let userLocation: CLLocation = locations[0] as CLLocation
+        let missionOperator = DJISDKManager.missionControl()?.followMeMissionOperator()
+        missionOperator?.updateFollowMeCoordinate(userLocation.coordinate)
+        self.currentLocation = userLocation.coordinate
+    }
+    
+    func executeAction(action: DJIMissionControlTimelineElement) {
+        let error = DJISDKManager.missionControl()?.scheduleElement(action)
+        
+        if error != nil {
+            NSLog("Error scheduling element \(error)")
+            return;
+        }
+    }
+    
     func defaultHotPointAction() -> DJIHotpointAction? {
         let mission = DJIHotpointMission()
         
@@ -453,16 +538,44 @@ class TimelineMissionViewController: UIViewController, UICollectionViewDelegate,
         }
 
         let offset = 0.0000899322
-
+        
         mission.hotpoint = CLLocationCoordinate2DMake(droneCoordinates.latitude + offset, droneCoordinates.longitude)
         mission.altitude = 15
         mission.radius = 15
         mission.angularVelocity = DJIHotpointMissionOperator.maxAngularVelocity(forRadius: mission.radius) * (arc4random() % 2 == 0 ? -1 : 1)
         mission.startPoint = .nearest
-        mission.heading = .alongCircleLookingForward
+        mission.heading = .towardHotpoint
         
-        return DJIHotpointAction(mission: mission, surroundingAngle: 180)
+        return DJIHotpointAction(mission: mission, surroundingAngle: 360)
     }
+    
+    func defaultFollowMeAction() -> DJIFollowMeMission? {
+        guard let droneLocationKey = DJIFlightControllerKey(param: DJIFlightControllerParamAircraftLocation) else {
+            return nil
+        }
+ 
+        guard let droneLocationValue = DJISDKManager.keyManager()?.getValueFor(droneLocationKey) else {
+             return nil
+        }
+ 
+        self.followMeMission = DJIFollowMeMission()
+        if (self.currentLocation != nil) {
+            self.followMeMission.followMeCoordinate = self.currentLocation!
+        } else {
+            let droneLocation = droneLocationValue.value as! DJISDKLocation
+            let droneCoordinates = droneLocation.coordinate
+            
+            if !CLLocationCoordinate2DIsValid(droneCoordinates) {
+                return nil
+            }
+            self.followMeMission.followMeCoordinate = droneCoordinates
+        }
+        self.followMeMission.followMeAltitude = Float(15)
+        self.followMeMission.heading = .towardFollowPosition
+       
+        return self.followMeMission
+    }
+
     
     // MARK: - Convenience
     
