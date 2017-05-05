@@ -23,7 +23,7 @@ enum TimelineElementKind: String {
     case hotpointMission = "Hotpoint Mission"
 }
 
-class TimelineMissionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, MKMapViewDelegate {
+class TimelineMissionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, MKMapViewDelegate, WatchSessionMessagesDelegate {
 
     @IBOutlet weak var availableElementsView: UICollectionView!
     var availableElements = [TimelineElementKind]()
@@ -41,6 +41,8 @@ class TimelineMissionViewController: UIViewController, UICollectionViewDelegate,
     @IBOutlet weak var stopButton: UIButton!
     
     @IBOutlet weak var simulatorButton: UIButton!
+    
+    
 
     fileprivate var _isSimulatorActive: Bool = false
     public var isSimulatorActive: Bool {
@@ -74,7 +76,8 @@ class TimelineMissionViewController: UIViewController, UICollectionViewDelegate,
             })
         }
         
-        
+        // EJE watch stuff
+        WatchSessionManager.instance.register(self)
     }
 
     override func didReceiveMemoryWarning() {
@@ -470,4 +473,10 @@ class TimelineMissionViewController: UIViewController, UICollectionViewDelegate,
         return M_PI / 180 * degrees
     }
 
+    // MARK: WatchSessionMessagesDelegate implementation ///////////////////////////////////
+    func messageReceived(data: [String : Any]) {
+        for (key, value) in data {
+            print("*** Received message " + key)
+        }
+    }
 }

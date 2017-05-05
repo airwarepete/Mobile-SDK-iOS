@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C3668251EBC1B100004FA47 /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3668241EBC1B100004FA47 /* WatchSessionManager.swift */; };
+		8C3668271EBC20500004FA47 /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3668261EBC20500004FA47 /* WatchSessionManager.swift */; };
+		8CB9636A1EBBE09D00C7D54B /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CB963681EBBE09D00C7D54B /* Interface.storyboard */; };
+		8CB9636C1EBBE09D00C7D54B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CB9636B1EBBE09D00C7D54B /* Assets.xcassets */; };
+		8CB963731EBBE09D00C7D54B /* Airware Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8CB963721EBBE09D00C7D54B /* Airware Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		8CB9637A1EBBE09D00C7D54B /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB963791EBBE09D00C7D54B /* InterfaceController.swift */; };
+		8CB9637C1EBBE09D00C7D54B /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9637B1EBBE09D00C7D54B /* ExtensionDelegate.swift */; };
+		8CB9637E1EBBE09D00C7D54B /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9637D1EBBE09D00C7D54B /* NotificationController.swift */; };
+		8CB963801EBBE09D00C7D54B /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9637F1EBBE09D00C7D54B /* ComplicationController.swift */; };
+		8CB963821EBBE09D00C7D54B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CB963811EBBE09D00C7D54B /* Assets.xcassets */; };
+		8CB963861EBBE09D00C7D54B /* Airware Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 8CB963661EBBE09D00C7D54B /* Airware Watch.app */; };
 		A435F1FB1E8BD61B00D58045 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A435F1F91E8BD61B00D58045 /* Assets.xcassets */; };
 		A435F1FC1E8BD61B00D58045 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A435F1FA1E8BD61B00D58045 /* Info.plist */; };
 		A435F2011E8BD62B00D58045 /* BluetoothConnectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A435F1FE1E8BD62B00D58045 /* BluetoothConnectorViewController.swift */; };
@@ -25,6 +36,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		8CB963741EBBE09D00C7D54B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 86985CC11E834EC200577EC7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8CB963711EBBE09D00C7D54B;
+			remoteInfo = "Airware Watch Extension";
+		};
+		8CB963841EBBE09D00C7D54B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 86985CC11E834EC200577EC7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8CB963651EBBE09D00C7D54B;
+			remoteInfo = "Airware Watch";
+		};
 		A435F2151E8BD6BF00D58045 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A435F2111E8BD6BF00D58045 /* VideoPreviewer.xcodeproj */;
@@ -53,12 +78,48 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8CB9638C1EBBE09D00C7D54B /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				8CB963731EBBE09D00C7D54B /* Airware Watch Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8CB9638E1EBBE09D00C7D54B /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				8CB963861EBBE09D00C7D54B /* Airware Watch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		128ABACC526C7880A0AB3F06 /* Pods-DJISDKSwiftDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DJISDKSwiftDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-DJISDKSwiftDemo/Pods-DJISDKSwiftDemo.release.xcconfig"; sourceTree = "<group>"; };
 		4B0C6B02B8D1383630F1B67E /* Pods-DJISDKSwiftDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DJISDKSwiftDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DJISDKSwiftDemo/Pods-DJISDKSwiftDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		86985CC91E834EC200577EC7 /* DJISDKSwiftDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DJISDKSwiftDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C3668241EBC1B100004FA47 /* WatchSessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WatchSessionManager.swift; path = DJISDKSwiftDemo/Services/WatchSessionManager.swift; sourceTree = SOURCE_ROOT; };
+		8C3668261EBC20500004FA47 /* WatchSessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchSessionManager.swift; sourceTree = "<group>"; };
+		8CB963661EBBE09D00C7D54B /* Airware Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Airware Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8CB963691EBBE09D00C7D54B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		8CB9636B1EBBE09D00C7D54B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8CB9636D1EBBE09D00C7D54B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8CB963721EBBE09D00C7D54B /* Airware Watch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Airware Watch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8CB963781EBBE09D00C7D54B /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		8CB963791EBBE09D00C7D54B /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		8CB9637B1EBBE09D00C7D54B /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		8CB9637D1EBBE09D00C7D54B /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		8CB9637F1EBBE09D00C7D54B /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
+		8CB963811EBBE09D00C7D54B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8CB963831EBBE09D00C7D54B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A435F1F41E8BD60900D58045 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = DJISDKSwiftDemo/Base.lproj/LaunchScreen.storyboard; sourceTree = SOURCE_ROOT; };
 		A435F1F61E8BD60900D58045 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = DJISDKSwiftDemo/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
 		A435F1F91E8BD61B00D58045 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = DJISDKSwiftDemo/Assets.xcassets; sourceTree = SOURCE_ROOT; };
@@ -82,6 +143,13 @@
 			files = (
 				A435F2171E8BD6CA00D58045 /* VideoPreviewer.framework in Frameworks */,
 				B06EA971D6515087DA6C15DE /* libPods-DJISDKSwiftDemo.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8CB9636F1EBBE09D00C7D54B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,6 +177,8 @@
 			isa = PBXGroup;
 			children = (
 				86985CCB1E834EC200577EC7 /* DJISDKSwiftDemo */,
+				8CB963671EBBE09D00C7D54B /* Airware Watch */,
+				8CB963761EBBE09D00C7D54B /* Airware Watch Extension */,
 				86985CCA1E834EC200577EC7 /* Products */,
 				C0C7419B2667BCEE0BB6C689 /* Pods */,
 				0B6F263FBC093B7B6FB6EF51 /* Frameworks */,
@@ -119,6 +189,8 @@
 			isa = PBXGroup;
 			children = (
 				86985CC91E834EC200577EC7 /* DJISDKSwiftDemo.app */,
+				8CB963661EBBE09D00C7D54B /* Airware Watch.app */,
+				8CB963721EBBE09D00C7D54B /* Airware Watch Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -162,6 +234,7 @@
 			isa = PBXGroup;
 			children = (
 				A435F20B1E8BD66100D58045 /* ProductCommunicationManager.swift */,
+				8C3668241EBC1B100004FA47 /* WatchSessionManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -173,6 +246,39 @@
 				A435F2061E8BD64300D58045 /* TimelineMissionViewController.swift */,
 			);
 			name = Timeline;
+			sourceTree = "<group>";
+		};
+		8CB963671EBBE09D00C7D54B /* Airware Watch */ = {
+			isa = PBXGroup;
+			children = (
+				8CB963681EBBE09D00C7D54B /* Interface.storyboard */,
+				8CB9636B1EBBE09D00C7D54B /* Assets.xcassets */,
+				8CB9636D1EBBE09D00C7D54B /* Info.plist */,
+			);
+			path = "Airware Watch";
+			sourceTree = "<group>";
+		};
+		8CB963761EBBE09D00C7D54B /* Airware Watch Extension */ = {
+			isa = PBXGroup;
+			children = (
+				8CB963791EBBE09D00C7D54B /* InterfaceController.swift */,
+				8CB9637B1EBBE09D00C7D54B /* ExtensionDelegate.swift */,
+				8CB9637D1EBBE09D00C7D54B /* NotificationController.swift */,
+				8CB9637F1EBBE09D00C7D54B /* ComplicationController.swift */,
+				8CB963811EBBE09D00C7D54B /* Assets.xcassets */,
+				8CB963831EBBE09D00C7D54B /* Info.plist */,
+				8CB963771EBBE09D00C7D54B /* Supporting Files */,
+				8C3668261EBC20500004FA47 /* WatchSessionManager.swift */,
+			);
+			path = "Airware Watch Extension";
+			sourceTree = "<group>";
+		};
+		8CB963771EBBE09D00C7D54B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8CB963781EBBE09D00C7D54B /* PushNotificationPayload.apns */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		A435F2121E8BD6BF00D58045 /* Products */ = {
@@ -206,16 +312,52 @@
 				86985DA41E8356C600577EC7 /* Embed Frameworks */,
 				8A68B323F021A127CDC7173C /* [CP] Embed Pods Frameworks */,
 				7483B5029B3A2172B51AD3FB /* [CP] Copy Pods Resources */,
+				8CB9638E1EBBE09D00C7D54B /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				A435F21A1E8BD6CA00D58045 /* PBXTargetDependency */,
+				8CB963851EBBE09D00C7D54B /* PBXTargetDependency */,
 			);
 			name = DJISDKSwiftDemo;
 			productName = "SDK Swift Sample";
 			productReference = 86985CC91E834EC200577EC7 /* DJISDKSwiftDemo.app */;
 			productType = "com.apple.product-type.application";
+		};
+		8CB963651EBBE09D00C7D54B /* Airware Watch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8CB9638D1EBBE09D00C7D54B /* Build configuration list for PBXNativeTarget "Airware Watch" */;
+			buildPhases = (
+				8CB963641EBBE09D00C7D54B /* Resources */,
+				8CB9638C1EBBE09D00C7D54B /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8CB963751EBBE09D00C7D54B /* PBXTargetDependency */,
+			);
+			name = "Airware Watch";
+			productName = "Airware Watch";
+			productReference = 8CB963661EBBE09D00C7D54B /* Airware Watch.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		8CB963711EBBE09D00C7D54B /* Airware Watch Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8CB9638B1EBBE09D00C7D54B /* Build configuration list for PBXNativeTarget "Airware Watch Extension" */;
+			buildPhases = (
+				8CB9636E1EBBE09D00C7D54B /* Sources */,
+				8CB9636F1EBBE09D00C7D54B /* Frameworks */,
+				8CB963701EBBE09D00C7D54B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Airware Watch Extension";
+			productName = "Airware Watch Extension";
+			productReference = 8CB963721EBBE09D00C7D54B /* Airware Watch Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -223,12 +365,21 @@
 		86985CC11E834EC200577EC7 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0820;
+				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = DJI;
 				TargetAttributes = {
 					86985CC81E834EC200577EC7 = {
 						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
+					8CB963651EBBE09D00C7D54B = {
+						CreatedOnToolsVersion = 8.3.2;
+						ProvisioningStyle = Automatic;
+					};
+					8CB963711EBBE09D00C7D54B = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = LQK2R53M89;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -253,6 +404,8 @@
 			projectRoot = "";
 			targets = (
 				86985CC81E834EC200577EC7 /* DJISDKSwiftDemo */,
+				8CB963651EBBE09D00C7D54B /* Airware Watch */,
+				8CB963711EBBE09D00C7D54B /* Airware Watch Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -276,6 +429,23 @@
 				A435F21D1E8BD8E300D58045 /* Main.storyboard in Resources */,
 				A435F1FC1E8BD61B00D58045 /* Info.plist in Resources */,
 				A435F1FB1E8BD61B00D58045 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8CB963641EBBE09D00C7D54B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8CB9636C1EBBE09D00C7D54B /* Assets.xcassets in Resources */,
+				8CB9636A1EBBE09D00C7D54B /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8CB963701EBBE09D00C7D54B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8CB963821EBBE09D00C7D54B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,6 +506,7 @@
 			files = (
 				A435F2221E8BDBF200D58045 /* AppDelegate.swift in Sources */,
 				A435F20A1E8BD65500D58045 /* DJIImageAnnotation.swift in Sources */,
+				8C3668251EBC1B100004FA47 /* WatchSessionManager.swift in Sources */,
 				A435F2071E8BD64300D58045 /* TimelineElementCollectionViewCell.swift in Sources */,
 				A435F20C1E8BD66100D58045 /* ProductCommunicationManager.swift in Sources */,
 				A435F2021E8BD62B00D58045 /* StartupViewController.swift in Sources */,
@@ -345,9 +516,31 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8CB9636E1EBBE09D00C7D54B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C3668271EBC20500004FA47 /* WatchSessionManager.swift in Sources */,
+				8CB9637E1EBBE09D00C7D54B /* NotificationController.swift in Sources */,
+				8CB963801EBBE09D00C7D54B /* ComplicationController.swift in Sources */,
+				8CB9637C1EBBE09D00C7D54B /* ExtensionDelegate.swift in Sources */,
+				8CB9637A1EBBE09D00C7D54B /* InterfaceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		8CB963751EBBE09D00C7D54B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8CB963711EBBE09D00C7D54B /* Airware Watch Extension */;
+			targetProxy = 8CB963741EBBE09D00C7D54B /* PBXContainerItemProxy */;
+		};
+		8CB963851EBBE09D00C7D54B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8CB963651EBBE09D00C7D54B /* Airware Watch */;
+			targetProxy = 8CB963841EBBE09D00C7D54B /* PBXContainerItemProxy */;
+		};
 		A435F21A1E8BD6CA00D58045 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = VideoPreviewer;
@@ -356,6 +549,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		8CB963681EBBE09D00C7D54B /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8CB963691EBBE09D00C7D54B /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
 		A435F1F31E8BD60900D58045 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -518,6 +719,80 @@
 			};
 			name = Release;
 		};
+		8CB963871EBBE09D00C7D54B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				DEVELOPMENT_TEAM = "";
+				IBSC_MODULE = Airware_Watch_Extension;
+				INFOPLIST_FILE = "Airware Watch/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dji.swiftSampleDemo.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.2;
+			};
+			name = Debug;
+		};
+		8CB963881EBBE09D00C7D54B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				DEVELOPMENT_TEAM = "";
+				IBSC_MODULE = Airware_Watch_Extension;
+				INFOPLIST_FILE = "Airware Watch/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dji.swiftSampleDemo.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.2;
+			};
+			name = Release;
+		};
+		8CB963891EBBE09D00C7D54B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				DEVELOPMENT_TEAM = LQK2R53M89;
+				INFOPLIST_FILE = "Airware Watch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dji.swiftSampleDemo.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.2;
+			};
+			name = Debug;
+		};
+		8CB9638A1EBBE09D00C7D54B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				DEVELOPMENT_TEAM = LQK2R53M89;
+				INFOPLIST_FILE = "Airware Watch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dji.swiftSampleDemo.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.2;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -535,6 +810,24 @@
 			buildConfigurations = (
 				86985CDE1E834EC200577EC7 /* Debug */,
 				86985CDF1E834EC200577EC7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8CB9638B1EBBE09D00C7D54B /* Build configuration list for PBXNativeTarget "Airware Watch Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8CB963891EBBE09D00C7D54B /* Debug */,
+				8CB9638A1EBBE09D00C7D54B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8CB9638D1EBBE09D00C7D54B /* Build configuration list for PBXNativeTarget "Airware Watch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8CB963871EBBE09D00C7D54B /* Debug */,
+				8CB963881EBBE09D00C7D54B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

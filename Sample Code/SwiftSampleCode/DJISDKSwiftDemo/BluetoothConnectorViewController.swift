@@ -20,7 +20,7 @@ fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
     }
 }
 
-class BluetoothConnectorViewController: UIViewController, UITableViewDelegate, DJIBluetoothProductConnectorDelegate, UITableViewDataSource {
+class BluetoothConnectorViewController: UIViewController, UITableViewDelegate, DJIBluetoothProductConnectorDelegate, UITableViewDataSource, WatchSessionMessagesDelegate {
 
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var connectButton: UIButton!
@@ -36,6 +36,10 @@ class BluetoothConnectorViewController: UIViewController, UITableViewDelegate, D
         }
             
         blConnector.delegate = self
+        
+        // EJE watch stuff
+        WatchSessionManager.instance.register(self)
+        self.showAlert("*** Registered BluetoothConnectorViewController.")
     }
     
     func bluetoothConnector() -> DJIBluetoothProductConnector? {
@@ -179,5 +183,14 @@ class BluetoothConnectorViewController: UIViewController, UITableViewDelegate, D
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
         // show the alert
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    // MARK: WatchSessionMessagesDelegate implementation ///////////////////////////////////
+    func messageReceived(data: [String : Any]) {
+        self.showAlert("*** Received messages.")
+        for (key, value) in data {
+            print("*** Received message " + key)
+            self.showAlert("Received message " + key)
+        }
     }
 }

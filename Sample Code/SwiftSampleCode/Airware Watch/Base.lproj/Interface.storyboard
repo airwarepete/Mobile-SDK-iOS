@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <device id="watch38" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="watchOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="12029"/>
+    </dependencies>
+    <scenes>
+        <!--Interface Controller-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="Airware_Watch" customModuleProvider="target">
+                    <items>
+                        <label alignment="left" text="Place your drone about 5m away" textAlignment="left" numberOfLines="2" id="AVy-UI-Qt1">
+                            <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                        </label>
+                        <button width="1" alignment="left" verticalAlignment="bottom" title="Start" id="WbK-xb-xUE">
+                            <color key="backgroundColor" red="0.89411764709999997" green="0.10980392160000001" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <segue destination="zBY-jp-y4t" kind="push" id="ps9-F6-Y3Q"/>
+                            </connections>
+                        </button>
+                    </items>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="220" y="345"/>
+        </scene>
+        <!--Interface Controller-->
+        <scene sceneID="Jo4-41-QfQ">
+            <objects>
+                <controller id="zBY-jp-y4t" customClass="InterfaceController" customModule="Airware_Watch_Extension">
+                    <items>
+                        <label alignment="left" text="Swipe to launch" id="A7k-rF-Mux">
+                            <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                        </label>
+                        <label alignment="left" text="The drone will begin following you." numberOfLines="2" id="C07-vp-TwM">
+                            <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
+                        </label>
+                        <button width="1" alignment="center" verticalAlignment="center" title="Launch" id="j0x-lT-581">
+                            <connections>
+                                <action selector="launchTouched" destination="zBY-jp-y4t" id="TE0-4Y-TzK"/>
+                                <segue destination="gO2-mX-MxU" kind="push" id="SMH-xj-cAI"/>
+                            </connections>
+                        </button>
+                        <label alignment="center" verticalAlignment="bottom" text="Status area" id="ACy-XK-GuH"/>
+                    </items>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="460" y="345"/>
+        </scene>
+        <!--Interface Controller-->
+        <scene sceneID="w4z-eX-7Qh">
+            <objects>
+                <controller id="gO2-mX-MxU" customClass="InterfaceController" customModule="Airware_Watch_Extension">
+                    <items>
+                        <group width="1" alignment="left" id="Ipo-b2-dK3">
+                            <items>
+                                <label alignment="left" hidden="YES" text="Landing..." id="wSx-93-kwD">
+                                    <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                                </label>
+                                <button alignment="center" title="Take 360°" id="GG0-a6-mxH">
+                                    <color key="backgroundColor" red="0.89411764709999997" green="0.10980392160000001" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
+                                    <connections>
+                                        <action selector="take360Touched" destination="gO2-mX-MxU" id="yHo-TA-Yrk"/>
+                                    </connections>
+                                </button>
+                                <activity height="48" alignment="left" hidden="YES" id="Yac-G1-cWW"/>
+                            </items>
+                        </group>
+                        <group width="1" alignment="center" id="0Xe-eU-34m">
+                            <items>
+                                <button alignment="center" title="Land" id="5ce-iR-Mf2">
+                                    <connections>
+                                        <action selector="landTouched" destination="gO2-mX-MxU" id="4QK-hc-154"/>
+                                    </connections>
+                                </button>
+                                <button alignment="center" title="Hold" id="Qp3-bA-i80">
+                                    <connections>
+                                        <action selector="holdTouched" destination="gO2-mX-MxU" id="jxf-Cd-cgw"/>
+                                    </connections>
+                                </button>
+                            </items>
+                        </group>
+                        <label alignment="center" verticalAlignment="bottom" text="Status area" id="Sd1-kw-rOr"/>
+                    </items>
+                    <connections>
+                        <outlet property="activityRing" destination="Yac-G1-cWW" id="Mtb-UV-IJe"/>
+                        <outlet property="landButton" destination="5ce-iR-Mf2" id="JcG-Qz-mJm"/>
+                        <outlet property="landingLabel" destination="wSx-93-kwD" id="8YZ-FC-BXD"/>
+                        <outlet property="take360Button" destination="GG0-a6-mxH" id="mCz-7M-Fac"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="691" y="345"/>
+        </scene>
+        <!--Static Notification Interface Controller-->
+        <scene sceneID="AEw-b0-oYE">
+            <objects>
+                <notificationController id="YCC-NB-fut">
+                    <items>
+                        <label alignment="left" text="Alert Label" id="IdU-wH-bcW"/>
+                    </items>
+                    <notificationCategory key="notificationCategory" identifier="myCategory" id="JfB-70-Muf"/>
+                    <connections>
+                        <outlet property="notificationAlertLabel" destination="IdU-wH-bcW" id="JKC-fr-R95"/>
+                        <segue destination="4sK-HA-Art" kind="relationship" relationship="dynamicNotificationInterface" id="kXh-Jw-8B1"/>
+                    </connections>
+                </notificationController>
+            </objects>
+            <point key="canvasLocation" x="220" y="643"/>
+        </scene>
+        <!--Notification Controller-->
+        <scene sceneID="ZPc-GJ-vnh">
+            <objects>
+                <controller id="4sK-HA-Art" customClass="NotificationController" customModule="Airware_Watch" customModuleProvider="target"/>
+            </objects>
+            <point key="canvasLocation" x="468" y="643"/>
+        </scene>
+    </scenes>
+    <color key="tintColor" red="0.89411764705882346" green="0.10980392156862745" blue="0.25882352941176467" alpha="1" colorSpace="calibratedRGB"/>
+</document>
